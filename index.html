@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوق الرومية أونلاين - من التراب إلى البيانات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sand-beige: #e8dfd5;
+            --dust-brown: #9c7c5c;
+            --olive-green: #7d8c74;
+            --charcoal-black: #2c2c2c;
+            --pure-white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            color: var(--charcoal-black);
+            background-color: var(--pure-white);
+            overflow-x: hidden;
+            line-height: 1.8;
+            text-align: right;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                        url('one.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.1s ease-out;
+            z-index: -1;
+        }
+        
+        .vertical-menu {
+            width: 80px;
+            height: 100%;
+            background-color: rgba(44, 44, 44, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+            z-index: 10;
+        }
+        
+        .menu-item {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            color: var(--sand-beige);
+            font-size: 14px;
+            font-weight: 500;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: color 0.3s;
+            letter-spacing: 1px;
+        }
+        
+        .menu-item:hover {
+            color: var(--olive-green);
+        }
+        
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 10%;
+            z-index: 5;
+        }
+        
+        .hero-text {
+            text-align: right;
+            max-width: 600px;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--charcoal-black);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--dust-brown);
+            font-weight: 500;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--charcoal-black);
+            max-width: 500px;
+        }
+        
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .cta-button {
+            padding: 15px 25px;
+            background-color: var(--olive-green);
+            color: var(--pure-white);
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--dust-brown);
+            transform: translateY(-2px);
+        }
+        
+        .sound-toggle {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background-color: rgba(44, 44, 44, 0.7);
+            color: var(--sand-beige);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        
+        .sound-toggle:hover {
+            background-color: rgba(44, 44, 44, 0.9);
+            transform: scale(1.1);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--charcoal-black);
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--dust-brown);
+            max-width: 500px;
+        }
+        
+        /* Section 2 - Live Index */
+        .live-index {
+            display: flex;
+            align-items: center;
+            background-color: var(--sand-beige);
+        }
+        
+        .live-graph {
+            flex: 1;
+            height: 400px;
+            background: linear-gradient(135deg, var(--olive-green), var(--dust-brown));
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-left: 80px;
+        }
+        
+        .graph-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            background: 
+                linear-gradient(to top, rgba(125, 140, 116, 0.3) 1px, transparent 1px),
+                linear-gradient(to right, rgba(125, 140, 116, 0.3) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .index-content {
+            flex: 1;
+        }
+        
+        /* Section 3 - Choose Your Ram */
+        .choose-ram {
+            background-color: var(--pure-white);
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .ram-cards {
+            display: flex;
+            gap: 30px;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .ram-card {
+            flex: 1;
+            background-color: var(--sand-beige);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ram-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .ram-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--olive-green);
+        }
+        
+        .ram-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--charcoal-black);
+        }
+        
+        .live-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--olive-green);
+            color: var(--pure-white);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Section 4 - Raise Online */
+        .raise-online {
+            background-color: var(--sand-beige);
+            display: flex;
+            align-items: center;
+        }
+        
+        .raise-image {
+            flex: 1;
+            height: 500px;
+            background-color: var(--dust-brown);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-right: 80px;
+            background-image: url('https://images.unsplash.com/photo-1542727357-54331fdea913?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .raise-content {
+            flex: 1;
+        }
+        
+        /* Section 5 - Market Intelligence */
+        .market-intelligence {
+            background-color: var(--pure-white);
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .intelligence-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .intelligence-item {
+            background-color: var(--sand-beige);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .intelligence-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Section 6 - Why This Exists */
+        .why-exists {
+            background-color: var(--charcoal-black);
+            color: var(--pure-white);
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .why-exists .section-title {
+            color: var(--pure-white);
+            font-size: 3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Section 7 - How Delivery Works */
+        .delivery-steps {
+            background-color: var(--sand-beige);
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .steps-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .step {
+            flex: 1;
+            background-color: var(--pure-white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--olive-green);
+            color: var(--pure-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--charcoal-black);
+            color: var(--sand-beige);
+            padding: 50px 10%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--pure-white);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .ram-cards, .intelligence-grid, .steps-container {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+            
+            .live-index, .raise-online {
+                flex-direction: column;
+            }
+            
+            .live-graph {
+                margin-left: 0;
+                margin-bottom: 50px;
+            }
+            
+            .raise-image {
+                margin-right: 0;
+                margin-bottom: 50px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .vertical-menu {
+                width: 60px;
+            }
+            
+            .hero-content {
+                padding-left: 5%;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 80px 5%;
+            }
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Background Transition */
+        .section-white {
+            background-color: var(--pure-white);
+        }
+        
+        .section-beige {
+            background-color: var(--sand-beige);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background" id="heroBackground"></div>
+        <div class="vertical-menu">
+            <div class="menu-item">الرئيسية</div>
+            <div class="menu-item">الأسعار</div>
+            <div class="menu-item">المواشي</div>
+            <div class="menu-item">لوحة التحكم</div>
+            <div class="menu-item">التحليلات</div>
+            <div class="menu-item">اتصل بنا</div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">سوق الرومية… أونلاين</h1>
+                <p class="hero-subtitle">أسعار الماشية لحظة بلحظة. خراف حقيقية، بيانات حقيقية، وشفافية كاملة.</p>
+                <p class="hero-description">
+                    ما كنت تجده في تراب السوق الأسبوعي… تجده الآن على شاشة هاتفك. تابع سعر الخروف في ولايتك في الوقت الحقيقي. اختر كبش عيدك من مكانك. ويمكنك حتى تربية خروفك أونلاين — وزن، تغذية، نمو… كل شيء ظاهر أمامك.
+                </p>
+                <div class="cta-container">
+                    <a href="#" class="cta-button">← تصفح الأسعار</a>
+                    <a href="#" class="cta-button">← اختر كبشك</a>
+                    <a href="#" class="cta-button">← ابدأ التربية أونلاين</a>
+                </div>
+            </div>
+        </div>
+        <button class="sound-toggle" id="soundToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 9V15H7L12 20V4L7 9H3Z" fill="currentColor"/>
+                <path d="M16.5 12C16.5 10.23 15.48 8.71 14 7.97V16.02C15.48 15.29 16.5 13.77 16.5 12Z" fill="currentColor"/>
+                <path d="M14 3.23V5.29C16.89 6.15 19 8.83 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.72 18.01 4.14 14 3.23Z" fill="currentColor"/>
+            </svg>
+        </button>
+    </section>
+
+    <!-- Section 2: Live Index -->
+    <section class="live-index section-white fade-in">
+        <div class="index-content">
+            <h2 class="section-title">مؤشر أسعار الماشية في الوقت الحقيقي</h2>
+            <p class="section-subtitle">
+                أول منصة تمنحك أسعاراً يمكنك الوثوق بها. نحن نجمع الأسعار من السوق مباشرة: من الفلاح، من التاجر، ومن المعاملات الحقيقية. لا إشاعات. لا تخمين. لا مفاوضات مبنية على كلام غير دقيق.
+            </p>
+            <p class="section-subtitle">
+                فقط بيانات واضحة ومحدّثة باستمرار. قارن بين الولايات. تابع حركة الأسعار يومياً. وافهم السوق قبل أن تخطو إليه.
+            </p>
+            <div class="cta-container">
+                <a href="#" class="cta-button">← شاهد المؤشر اليومي</a>
+                <a href="#" class="cta-button">← قارن بين الولايات</a>
+            </div>
+        </div>
+        <div class="live-graph">
+            <div class="graph-line"></div>
+        </div>
+    </section>
+
+    <!-- Section 3: Choose Your Ram -->
+    <section class="choose-ram section-beige fade-in">
+        <h2 class="section-title">اختر كبشك</h2>
+        <p class="section-subtitle">كبشك أصبح على بُعد نقرة واحدة. كل كبش معروض بمعلومات دقيقة: وزن حقيقي، عمر، أصل الخروف، السعر المحدّث، صورة وفيديو حديث.</p>
+        <div class="ram-cards">
+            <div class="ram-card">
+                <div class="live-badge">تم التحديث منذ ٨ دقائق</div>
+                <h3>كبش العيد</h3>
+                <p>اختر من أفضل الكباش مع سجلات صحية موثقة وأسعار شفافة.</p>
+                <a href="#" class="cta-button">شاهد الخراف ←</a>
+            </div>
+            <div class="ram-card">
+                <div class="live-badge">تم التحديث منذ ١٢ دقيقة</div>
+                <h3>خروف للتربية أونلاين</h3>
+                <p>اختر خروفك وتابع نموه من خلال لوحة تحكم المزرعة الرقمية.</p>
+                <a href="#" class="cta-button">شاهد الخراف ←</a>
+            </div>
+            <div class="ram-card">
+                <div class="live-badge">تم التعديث منذ ٥ دقائق</div>
+                <h3>الشراء بالجملة</h3>
+                <p>للشركات والمشتريات الكبيرة مع خصومات كمية وخيارات توصيل.</p>
+                <a href="#" class="cta-button">شاهد الخراف ←</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Raise Online -->
+    <section class="raise-online section-white fade-in">
+        <div class="raise-content">
+            <h2 class="section-title">خروفك… مزرعتك… ولوحة تحكمك</h2>
+            <p class="section-subtitle">
+                اختر خروفك، وسنضعه في مزرعة شريكة، وستتابع كل شيء بنفسك: منحنى الوزن، جدول التغذية، صور يومية، مستوى النمو، القيمة السوقية المتوقعة.
+            </p>
+            <p class="section-subtitle">
+                من يوم الاختيار… حتى يوم التسليم — جاهز، صحي، وموثّق. هذه هي تربية المواشي، لكن بإصدار عصري.
+            </p>
+            <div class="cta-container">
+                <a href="#" class="cta-button">← جرب لوحة تحكم المزرعة</a>
+            </div>
+        </div>
+        <div class="raise-image"></div>
+    </section>
+
+    <!-- Section 5: Market Intelligence -->
+    <section class="market-intelligence section-beige fade-in">
+        <h2 class="section-title">السوق لم يعد غامضاً. صار قابلاً للفهم</h2>
+        <div class="intelligence-grid">
+            <div class="intelligence-item">
+                <h3>منحنيات الأسعار التاريخية</h3>
+                <p>بيانات سنوات من حركة الأسعار لاتخاذ قرارات مستنيرة</p>
+            </div>
+            <div class="intelligence-item">
+                <h3>خريطة حرارية حسب الولاية</h3>
+                <p>تصور مرئي لتفاوت الأسعار بين المناطق المختلفة</p>
+            </div>
+            <div class="intelligence-item">
+                <h3>الأنماط الموسمية</h3>
+                <p>فهم تأثير المواسم والأعياد على أسعار الماشية</p>
+            </div>
+        </div>
+        <div class="cta-container" style="margin-top: 50px;">
+            <a href="#" class="cta-button">← استكشف التحليلات</a>
+        </div>
+    </section>
+
+    <!-- Section 6: Why This Exists -->
+    <section class="why-exists fade-in">
+        <h2 class="section-title">لأن الشفافية ليست رفاهية. حتى في عالم تربية الماشية.</h2>
+    </section>
+
+    <!-- Section 7: Delivery Process -->
+    <section class="delivery-steps section-white fade-in">
+        <h2 class="section-title">كيف يعمل النظام؟</h2>
+        <p class="section-subtitle">٤ خطوات بسيطة تمنحك التجربة الكاملة. من فوضى السوق… إلى تجربة مرتّبة وواضحة.</p>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">١</div>
+                <h3>اختر</h3>
+                <p>اختر الخروف المناسب من العروض الموثّقة.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">٢</div>
+                <h3>احجز</h3>
+                <p>احجزه فوراً بشكل آمن.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">٣</div>
+                <h3>التأكيد</h3>
+                <p>نؤكد الوزن والصورة والتفاصيل قبل الإتمام.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">٤</div>
+                <h3>الاستلام</h3>
+                <p>استلام من المزرعة أو توصيل لبيتك.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">سوق الرومية أونلاين</div>
+            <p>من التراب إلى البيانات</p>
+            <p style="margin-top: 30px;">الاتصال: info@soukromia.com | الشروط والأحكام</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">© 2023 سوق الرومية أونلاين. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Parallax effect for hero background
+        document.addEventListener('mousemove', (e) => {
+            const heroBackground = document.getElementById('heroBackground');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            heroBackground.style.transform = `translate(${x * 20}px, ${y * 10}px)`;
+        });
+
+        // Sound toggle functionality
+        const soundToggle = document.getElementById('soundToggle');
+        let soundEnabled = false;
+        
+        soundToggle.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            if (soundEnabled) {
+                soundToggle.style.backgroundColor = 'rgba(125, 140, 116, 0.9)';
+                // In a real implementation, you would play ambient sound here
+                console.log('Ambient sound enabled');
+            } else {
+                soundToggle.style.backgroundColor = 'rgba(44, 44, 44, 0.7)';
+                // In a real implementation, you would stop the ambient sound here
+                console.log('Ambient sound disabled');
+            }
+        });
+
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Background transition effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroBackground = document.getElementById('heroBackground');
+            
+            // Gradually fade out the souq background as user scrolls
+            const opacity = Math.max(0, 1 - scrollY / 800);
+            heroBackground.style.opacity = opacity;
+        });
+    </script>
+</body>
+</html>
